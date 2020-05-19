@@ -155,28 +155,36 @@ const Home = (props) => {
                 } seconds)`}
               </div>
             </div>
-            {data.hits.map((story, index) => (
-              <Story story={story} key={index} />
-            ))}
-            <div style={{ textAlign: "center" }}>
-              <Pagination
-                current={query.page}
-                onChange={(nPage) => {
-                  window.scrollTo(0, 0);
-                  history.push(
-                    `?${queryString.stringify({
-                      page: nPage,
-                      sort: query.sortedBy ? "byDate" : "byPopularity",
-                      q: query.q,
-                    })}`
-                  );
-                  setIsLoading(true);
-                  setQuery({ ...query, page: nPage });
-                }}
-                total={data.nbPages * 10}
-                showSizeChanger={false}
-              />
-            </div>
+            {data.hits.length === 0 ? (
+              <div style={{ textAlign: "center"}}>We found no stories matching {query.q}
+              </div>
+            ) : (
+              <>
+                
+                {data.hits.map((story, index) => (
+                  <Story story={story} key={index} />
+                ))}
+                <div style={{ textAlign: "center" }}>
+                  <Pagination
+                    current={query.page}
+                    onChange={(nPage) => {
+                      window.scrollTo(0, 0);
+                      history.push(
+                        `?${queryString.stringify({
+                          page: nPage,
+                          sort: query.sortedBy ? "byDate" : "byPopularity",
+                          q: query.q,
+                        })}`
+                      );
+                      setIsLoading(true);
+                      setQuery({ ...query, page: nPage });
+                    }}
+                    total={data.nbPages * 10}
+                    showSizeChanger={false}
+                  />
+                </div>
+              </>
+            )}
           </div>
         )}
       </Content>
