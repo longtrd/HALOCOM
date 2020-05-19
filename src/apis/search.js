@@ -1,6 +1,17 @@
 import api from "../services/api";
-const endPoint = "/search";
 
-export const getHints = (payload) => {
-  return api.get(`${endPoint}?page=${payload.page - 1}&hitsPerPage=40`);
+export const getHintsByPoint = (payload) => {
+  return api.get(
+    `search?page=${payload.page - 1}&hitsPerPage=40&tags=story&query=${
+      payload.q
+    }`
+  );
+};
+
+export const getHintsByDate = (payload) => {
+  return api.get(
+    `search_by_date?page=${payload.page - 1}&hitsPerPage=40&tags=story&query=${
+      payload.q
+    }`
+  );
 };
