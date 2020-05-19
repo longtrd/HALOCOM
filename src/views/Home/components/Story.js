@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Story = (props) => {
   let story_comment = props.story._highlightResult.story_text;
@@ -11,11 +12,9 @@ const Story = (props) => {
     return (
       <aside className="story">
         <div className="story-title">
-          <a
-            href={`https://news.ycombinator.com/item?id=${props.story.objectID}`}
-          >
+          <Link to={`/item/${props.story.objectID}`}>
             <span>{props.story.title}</span>
-          </a>
+          </Link>
           {props.story.url ? (
             <a
               href={props.story.url}
@@ -29,39 +28,43 @@ const Story = (props) => {
         </div>
         <div className="story_meta">
           <span>
-            <a
-              href={`https://news.ycombinator.com/item?id=${props.story.objectID}`}
-            >{`${props.story.points} points`}</a>
+            <Link
+              to={`/item/${props.story.objectID}`}
+            >{`${props.story.points} points`}</Link>
           </span>
           ,<span className="Story_separator">|</span>
           <span>
-            <a
-              href={`https://news.ycombinator.com/user?id=${props.story.author}`}
-            >
+            <Link to={`/user/${props.story.author}`}>
               <span>{props.story.author}</span>
-            </a>
+            </Link>
           </span>
           <span className="Story_separator">|</span>
           <span>
-            <a
-              href={`https://news.ycombinator.com/item?id=${props.story.objectID}`}
-            >
-              17 hours ago
-            </a>
+            <Link to={`/item/${props.story.objectID}`}>17 hours ago</Link>
           </span>
           <span className="Story_separator">|</span>
           <span>
-            <a
-              href={`https://news.ycombinator.com/item?id=${props.story.objectID}`}
-            >{`${props.story.num_comments} comments`}</a>
+            <Link
+              to={`/item/${props.story.objectID}`}
+            >{`${props.story.num_comments} comments`}</Link>
           </span>
           {story_comment_arr.length > 1 ? (
             <div className="story_comment">
               <span>
-                {story_comment_arr[0] || null}
+                <p
+                  style={{ marginTop: 0 }}
+                  dangerouslySetInnerHTML={{
+                    __html: story_comment_arr[0] || null,
+                  }}
+                />
                 {story_comment_arr.map((comment, i) => {
                   if (i !== 0) {
-                    return <p key={i}>{comment}</p>;
+                    return (
+                      <p
+                        key={i}
+                        dangerouslySetInnerHTML={{ __html: comment }}
+                      />
+                    );
                   }
                   return null;
                 })}
