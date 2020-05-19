@@ -1,7 +1,13 @@
 @main-color: rgb(249, 118, 46);
 .ant-layout-header {
+  padding: 0 10px;
   background: @main-color;
-  padding: 0 100px;
+  @media (min-width: 1000px) {
+    padding: 0 50px;
+    @media (min-width: 1300px) {
+      padding: 0 100px;
+    }
+  }
 }
 
 .header {
@@ -11,7 +17,7 @@
 
 .setting-icon {
   height: 31px;
-  margin: 16px 24px 16px 0;
+  margin: 16px 0;
   transform: rotate(-90deg);
   cursor: pointer;
 }
@@ -30,6 +36,16 @@
 .logo {
   height: 50px;
   margin: 7px 24px 7px 0;
+}
+
+.h-content {
+  padding: 0;
+  @media (min-width: 1000px) {
+    padding: 0 50px;
+    @media (min-width: 1300px) {
+      padding: 0 100px;
+    }
+  }
 }
 
 .Footer_list {
@@ -72,7 +88,8 @@
   word-break: break-all;
 }
 
-.story_meta, .story_meta a {
+.story_meta,
+.story_meta a {
   color: #696969;
 }
 
@@ -102,8 +119,36 @@
   margin: 8px 0 0;
 }
 
-
 .story_comment * {
   box-sizing: border-box;
 }
 
+.search-container {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 8px 3px 8px;
+  color: #000;
+  font-size: 12px;
+  @media (min-width: 768px) {
+    justify-content: space-between;
+  }
+}
+
+.search-tool .ant-cascader-picker {
+  margin: 0 4px;
+}
+
+.search-tool .ant-cascader-input.ant-input {
+  width: 100px;
+}
+
+.ant-cascader-menu {
+  height: unset;
+}
+
+.hidden-text {
+  display: none;
+  @media (min-width: 768px) {
+    display: inline;
+  }
+}
