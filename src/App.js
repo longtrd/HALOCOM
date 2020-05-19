@@ -1,10 +1,14 @@
-import React from 'react';
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
+
+import "./styles/App.less"
+import Routes from "./Routes";
 
 function App() {
   return (
-    <div className="App">
-     123
-    </div>
+    <BrowserRouter>
+      <Routes />
+    </BrowserRouter>
   );
 }
 
