@@ -5,10 +5,11 @@ import { SearchOutlined, LoadingOutlined } from "@ant-design/icons";
 import { Layout, Input, Pagination, Spin, Cascader } from "antd";
 
 import { Story } from "./components";
+import { Footer } from "../../components";
 import * as api from "../../apis/search";
 import "./home.less";
 
-const { Header, Footer, Content } = Layout;
+const { Header, Content } = Layout;
 const loadingIcon = <LoadingOutlined style={{ fontSize: 80 }} spin />;
 const optionsSearch = [
   { value: 0, label: "All" },
@@ -34,7 +35,7 @@ const Home = (props) => {
   const [query, setQuery] = useState({
     page: parseInt(qs.page) || 1,
     sortedBy: qs.sort === "byDate" ? 1 : 0,
-    q: qs.q,
+    q: qs.q || "",
   });
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState({ hits: [], nbPages: 0 });
@@ -179,29 +180,7 @@ const Home = (props) => {
           </div>
         )}
       </Content>
-      <Footer style={{ textAlign: "center" }}>
-        <ul className="Footer_list">
-          <li>
-            <a
-              href="https://halocom.vn/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Halocom
-            </a>
-          </li>
-          <li>•</li>
-          <li>
-            <a
-              href="https://hn.algolia.com/api"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              API Documentation
-            </a>
-          </li>
-        </ul>
-      </Footer>
+      <Footer />
     </Layout>
   );
 };
