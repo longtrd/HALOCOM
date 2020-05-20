@@ -17,9 +17,11 @@ const Author = () => {
 
   useEffect(() => {
     const getAuthor = async (id) => {
+      document.title = "Loading...";
       try {
         const res = await api.getAuthor(id);
         setData(res.data);
+        document.title = `Profile ${res.data.username}`;
         setIsLoading(false);
       } catch (err) {
         console.log(err);

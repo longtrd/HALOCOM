@@ -42,6 +42,8 @@ const Home = (props) => {
 
   useEffect(() => {
     const getStory = async (query) => {
+      document.title = "Loading...";
+
       try {
         let res;
         if (query.sortedBy) {
@@ -50,6 +52,8 @@ const Home = (props) => {
           res = await api.getHintsByPoint(query);
         }
         setData(res.data);
+        document.title = "Search news";
+
         setIsLoading(false);
       } catch (err) {
         console.log(err);
@@ -58,7 +62,6 @@ const Home = (props) => {
     };
     getStory(query);
   }, [query]);
-
 
   return (
     <Layout className="layout">
@@ -155,11 +158,11 @@ const Home = (props) => {
               </div>
             </div>
             {data.hits.length === 0 ? (
-              <div style={{ textAlign: "center"}}>We found no stories matching {query.q}
+              <div style={{ textAlign: "center" }}>
+                We found no stories matching {query.q}
               </div>
             ) : (
               <>
-                
                 {data.hits.map((story, index) => (
                   <Story story={story} key={index} />
                 ))}

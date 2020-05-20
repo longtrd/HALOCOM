@@ -3,13 +3,19 @@ import { CaretDownOutlined, CaretUpOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
 const Comment = (props) => {
+  console.log(props.data);
+  if (!props.data.author) {
+    return null;
+  }
   return (
     <div className="comment">
       <div className="comment-header">
         <Link to={`/user/${props.data.author}`}>
           <span>{props.data.author || ""}</span>
         </Link>
-        <span>{` on ${props.data.created_at}`}</span>
+        <span style={{ marginLeft: 5 }}>{`on ${new Date(props.data.created_at)
+          .toString()
+          .slice(0, 15)}`}</span>
         {props.show[props.i] ? (
           <CaretDownOutlined
             onClick={() => {

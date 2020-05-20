@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Layout, Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 
@@ -18,9 +18,11 @@ const Article = () => {
 
   useEffect(() => {
     const getArticle = async (id) => {
+      document.title = "Loading...";
       try {
         const res = await api.getArticle(id);
         setData(res.data);
+        document.title = res.data.title;
         setIsLoading(false);
       } catch (err) {
         console.log(err);
@@ -40,6 +42,23 @@ const Article = () => {
           </div>
         ) : (
           <div style={{ margin: "auto", maxWidth: 1800, padding: "10px 10px" }}>
+            <div>
+              <div className="title">
+                <a href={data.url}>
+                  {data.title} {data.url}
+                </a>
+              </div>
+
+              <div>
+                <span>{`${data.points} points`}</span> by{" "}
+                <Link to={`/user/${data.username}`}>
+                  <span>{data.author}</span>
+                </Link>
+                <span>
+                  {` on ${new Date(data.created_at).toString().slice(0, 15)}`}
+                </span>{" "}
+              </div>
+            </div>
             <CommentContainer data={data} />
           </div>
         )}
