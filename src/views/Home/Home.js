@@ -59,7 +59,6 @@ const Home = (props) => {
     getStory(query);
   }, [query]);
 
-  console.log(query);
 
   return (
     <Layout className="layout">

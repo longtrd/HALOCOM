@@ -4,6 +4,7 @@ import { Layout, Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 
 import { Footer, Header } from "../../components";
+import { CommentContainer } from "./components";
 import * as api from "../../apis/article";
 
 const loadingIcon = <LoadingOutlined style={{ fontSize: 80 }} spin />;
@@ -29,8 +30,6 @@ const Article = () => {
     getArticle(item_id);
   }, [item_id]);
 
-  console.log(data);
-
   return (
     <Layout>
       <Header />
@@ -40,7 +39,9 @@ const Article = () => {
             <Spin indicator={loadingIcon} />
           </div>
         ) : (
-          <div style={{ margin: "auto", maxWidth: 1800 }}></div>
+          <div style={{ margin: "auto", maxWidth: 1800, padding: "10px 10px" }}>
+            <CommentContainer data={data} />
+          </div>
         )}
       </Content>
       <Footer />
