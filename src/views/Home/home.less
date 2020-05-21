@@ -153,6 +153,14 @@
   }
 }
 
+.logout {
+  cursor: pointer;
+}
+
+.logout:hover {
+  text-decoration: underline;
+}
+
 .comment {
   margin: 10px 0px;
 }
@@ -161,10 +169,35 @@
   text-decoration: underline;
 }
 
+.comment-container {
+  margin-left: 20px;
+  @media (min-width: 768px) {
+    margin-left: 60px;
+  }
+}
+
 .comment p {
   margin-bottom: 5px;
 }
 
 .comment .comment-text * {
   color: #000;
+}
+
+.title * {
+  color: #000;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.login-form {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 24px 24px 0 10px;
+  background: #fff;
+}
+
+.login-icon {
+  font-size: 35px;
+  margin-left: 10px;
 }

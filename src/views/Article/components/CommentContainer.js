@@ -6,9 +6,9 @@ const CommentContainer = (props) => {
     <>
       {props.data.children.map((comment, i) => {
         return (
-          <div key={i} style={props.style}>
+          <div key={i} style={props.style} className={props.className}>
             <Comment
-              data={props.data}
+              data={comment}
               i={i}
               setShow={(show) => {
                 setShow([...show]);
@@ -22,7 +22,7 @@ const CommentContainer = (props) => {
               show[i] &&
               comment.children.map((cmt, i) => (
                 <CommentContainer
-                  style={{ marginLeft: 50 }}
+                  className="comment-container"
                   key={i}
                   data={cmt}
                 />
