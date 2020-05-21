@@ -154,7 +154,16 @@ const Home = (props) => {
               <div className="search-meta hidden-text">
                 {`${data.nbHits.toLocaleString()} results (${
                   data.processingTimeMS / 1000
-                } seconds)`}
+                } seconds) `}
+                <span
+                  className="logout"
+                  onClick={() => {
+                    localStorage.clear();
+                    history.push("/");
+                  }}
+                >
+                  Logout
+                </span>
               </div>
             </div>
             {data.hits.length === 0 ? (

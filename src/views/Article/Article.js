@@ -14,7 +14,7 @@ const Article = () => {
   let { item_id } = useParams();
 
   const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState();
+  const [data, setData] = useState({ children: [] });
 
   useEffect(() => {
     const getArticle = async (id) => {
@@ -31,6 +31,7 @@ const Article = () => {
     };
     getArticle(item_id);
   }, [item_id]);
+
 
   return (
     <Layout>
@@ -51,7 +52,7 @@ const Article = () => {
 
               <div>
                 <span>{`${data.points} points`}</span> by{" "}
-                <Link to={`/user/${data.username}`}>
+                <Link to={`/user/${data.author}`}>
                   <span>{data.author}</span>
                 </Link>
                 <span>
@@ -59,6 +60,11 @@ const Article = () => {
                 </span>{" "}
               </div>
             </div>
+            {data.children.length === 0 && (
+              <div style={{ textAlign: "center", fontSize: 24 }}>
+                No comments were found
+              </div>
+            )}
             <CommentContainer data={data} />
           </div>
         )}

@@ -3,7 +3,6 @@ import { CaretDownOutlined, CaretUpOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
 const Comment = (props) => {
-  console.log(props.data);
   if (!props.data.author) {
     return null;
   }
